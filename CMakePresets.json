@@ -1,0 +1,128 @@
+{
+    "version": 5,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                }
+            },
+            "binaryDir": "build"
+        },
+        {
+            "name": "msvc-config",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_C_COMPILER": "cl",
+                "VCPKG_TARGET_TRIPLET" : "x64-windows-dynamic"
+            },
+            "toolset": {
+                "value": "v143"
+            }
+        },
+        {
+            "name": "mingw-config",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_C_COMPILER": "gcc",
+                "VCPKG_TARGET_TRIPLET" : "x64-mingw-dynamic"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc-debug-build",
+            "configurePreset": "msvc-config",
+            "configuration": "Debug"
+        },
+        {
+            "name": "msvc-release-build",
+            "configurePreset": "msvc-config",
+            "configuration": "Release"
+        },
+        {
+            "name": "msvc-relwithdebinfo-build",
+            "configurePreset": "msvc-config",
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "mingw-debug-build",
+            "configurePreset": "mingw-config",
+            "configuration": "Debug"
+        },
+        {
+            "name": "mingw-release-build",
+            "configurePreset": "mingw-config",
+            "configuration": "Release"
+        },
+        {
+            "name": "mingw-relwithdebinfo-build",
+            "configurePreset": "mingw-config",
+            "configuration": "RelWithDebInfo"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "msvc-debug-test",
+            "configurePreset": "msvc-config",
+            "configuration": "Debug",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "msvc-release-test",
+            "configurePreset": "msvc-config",
+            "configuration": "Release",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "msvc-relwithdebinfo-test",
+            "configurePreset": "msvc-config",
+            "configuration": "RelWithDebInfo",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "mingw-debug-test",
+            "configurePreset": "mingw-config",
+            "configuration": "Debug",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "mingw-release-test",
+            "configurePreset": "mingw-config",
+            "configuration": "Release",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "mingw-relwithdebinfo-test",
+            "configurePreset": "mingw-config",
+            "configuration": "RelWithDebInfo",
+            "execution": 
+            {
+                "stopOnFailure": true
+            }
+        }
+    ]
+}
